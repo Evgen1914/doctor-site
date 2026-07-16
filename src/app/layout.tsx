@@ -17,9 +17,19 @@ const notoSans = Noto_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://ripsidocmed.ru"),
   title: "Врач-гинеколог — Запись на приём онлайн",
   description:
     "Профессиональная гинекологическая помощь. Консультации, диагностика, ведение беременности. Запишитесь на приём онлайн.",
+  openGraph: {
+    title: "Врач-гинеколог — Запись на приём онлайн",
+    description:
+      "Профессиональная гинекологическая помощь. Консультации, диагностика, ведение беременности. Запишитесь на приём онлайн.",
+    url: "https://ripsidocmed.ru",
+    siteName: "Врач-гинеколог",
+    locale: "ru_RU",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
