@@ -10,6 +10,29 @@ function escapeHtml(str: string) {
     .replace(/>/g, "&gt;");
 }
 
+// TEMP: connectivity diagnostics
+export async function GET() {
+  async function probe(url: string) {
+    try {
+      const r = await fetch(url, { signal: AbortSignal.timeout(8000) });
+      return { url, ok: r.ok, status: r.status };
+    } catch (e) {
+      return {
+        url,
+        ok: false,
+        error: e instanceof Error ? `${e.name}: ${e.message}` : String(e),
+      };
+    }
+  }
+  const results = await Promise.all([
+    probe("https://api.telegram.org"),
+    probe("https://api.ipify.org?format=json"),
+    probe("https://www.google.com"),
+    probe("https://api.github.com"),
+  ]);
+  return NextResponse.json({ results });
+}
+
 export async function POST(request: NextRequest) {
   if (!BOT_TOKEN || !CHAT_ID) {
     console.error("Telegram env vars are not configured");
