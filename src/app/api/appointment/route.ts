@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
-const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+// Релей на Cloudflare пересылает заявку в Telegram
+// (хостинг сайта не может обращаться к api.telegram.org напрямую).
+const RELAY_URL = process.env.RELAY_URL;
+const RELAY_SECRET = process.env.RELAY_SECRET;
 
 function escapeHtml(str: string) {
   return str
@@ -10,32 +12,9 @@ function escapeHtml(str: string) {
     .replace(/>/g, "&gt;");
 }
 
-// TEMP: connectivity diagnostics
-export async function GET() {
-  async function probe(url: string) {
-    try {
-      const r = await fetch(url, { signal: AbortSignal.timeout(8000) });
-      return { url, ok: r.ok, status: r.status };
-    } catch (e) {
-      return {
-        url,
-        ok: false,
-        error: e instanceof Error ? `${e.name}: ${e.message}` : String(e),
-      };
-    }
-  }
-  const results = await Promise.all([
-    probe("https://api.telegram.org"),
-    probe("https://api.ipify.org?format=json"),
-    probe("https://www.google.com"),
-    probe("https://api.github.com"),
-  ]);
-  return NextResponse.json({ results });
-}
-
 export async function POST(request: NextRequest) {
-  if (!BOT_TOKEN || !CHAT_ID) {
-    console.error("Telegram env vars are not configured");
+  if (!RELAY_URL || !RELAY_SECRET) {
+    console.error("Relay env vars are not configured");
     return NextResponse.json(
       { error: "Сервис записи временно недоступен. Позвоните нам, пожалуйста." },
       { status: 503 }
@@ -77,40 +56,27 @@ export async function POST(request: NextRequest) {
   const text = lines.join("\n");
 
   try {
-    const tgRes = await fetch(
-      `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          chat_id: CHAT_ID,
-          text,
-          parse_mode: "HTML",
-        }),
-      }
-    );
+    const relayRes = await fetch(RELAY_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-relay-secret": RELAY_SECRET,
+      },
+      body: JSON.stringify({ text }),
+    });
 
-    if (!tgRes.ok) {
-      const errText = await tgRes.text();
-      console.error("Telegram API error:", errText);
+    if (!relayRes.ok) {
+      const errText = await relayRes.text();
+      console.error("Relay error:", relayRes.status, errText);
       return NextResponse.json(
-        {
-          error: "Не удалось отправить заявку. Позвоните нам, пожалуйста.",
-          stage: "telegram_error",
-          status: tgRes.status,
-          detail: errText,
-        },
+        { error: "Не удалось отправить заявку. Позвоните нам, пожалуйста." },
         { status: 502 }
       );
     }
   } catch (err) {
-    console.error("Telegram request failed:", err);
+    console.error("Relay request failed:", err);
     return NextResponse.json(
-      {
-        error: "Не удалось отправить заявку. Позвоните нам, пожалуйста.",
-        stage: "network_failed",
-        detail: err instanceof Error ? `${err.name}: ${err.message}` : String(err),
-      },
+      { error: "Не удалось отправить заявку. Позвоните нам, пожалуйста." },
       { status: 502 }
     );
   }
