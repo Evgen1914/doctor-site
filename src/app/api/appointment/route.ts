@@ -71,14 +71,23 @@ export async function POST(request: NextRequest) {
       const errText = await tgRes.text();
       console.error("Telegram API error:", errText);
       return NextResponse.json(
-        { error: "Не удалось отправить заявку. Позвоните нам, пожалуйста." },
+        {
+          error: "Не удалось отправить заявку. Позвоните нам, пожалуйста.",
+          stage: "telegram_error",
+          status: tgRes.status,
+          detail: errText,
+        },
         { status: 502 }
       );
     }
   } catch (err) {
     console.error("Telegram request failed:", err);
     return NextResponse.json(
-      { error: "Не удалось отправить заявку. Позвоните нам, пожалуйста." },
+      {
+        error: "Не удалось отправить заявку. Позвоните нам, пожалуйста.",
+        stage: "network_failed",
+        detail: err instanceof Error ? `${err.name}: ${err.message}` : String(err),
+      },
       { status: 502 }
     );
   }
