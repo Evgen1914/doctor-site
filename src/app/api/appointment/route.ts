@@ -71,12 +71,7 @@ export async function POST(request: NextRequest) {
       const errText = await tgRes.text();
       console.error("Telegram API error:", errText);
       return NextResponse.json(
-        {
-          error: "Не удалось отправить заявку. Позвоните нам, пожалуйста.",
-          detail: errText,
-          tokenLen: (BOT_TOKEN ?? "").length,
-          chatId: CHAT_ID,
-        },
+        { error: "Не удалось отправить заявку. Позвоните нам, пожалуйста." },
         { status: 502 }
       );
     }
