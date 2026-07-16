@@ -79,7 +79,7 @@ export default function HomePage() {
                   href="/services"
                   className="inline-flex items-center gap-2 rounded-xl border border-border px-8 py-3.5 text-base font-medium text-foreground transition-all duration-200 hover:bg-muted cursor-pointer"
                 >
-                  Наши услуги
+                  Мои услуги
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
@@ -134,7 +134,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="font-[family-name:var(--font-figtree)] text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              Наши услуги
+              Мои услуги
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
               Полный спектр гинекологических услуг для заботы о вашем здоровье

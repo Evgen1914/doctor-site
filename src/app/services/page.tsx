@@ -85,7 +85,7 @@ export default function ServicesPage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h1 className="font-[family-name:var(--font-figtree)] text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-              Наши услуги
+              Мои услуги
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
               Полный спектр гинекологической помощи с использованием современных
