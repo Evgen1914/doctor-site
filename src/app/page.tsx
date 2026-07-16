@@ -227,12 +227,11 @@ export default function HomePage() {
             <div className="relative">
               <div className="aspect-[4/5] overflow-hidden rounded-2xl">
                 <Image
-                  src="/images/doctor-main.jpg"
+                  src="/images/doctor-about.jpg"
                   alt="Налбандян Рипсиме Асатуровна — врач-гинеколог"
                   width={800}
                   height={1200}
-                  className="h-full w-full object-cover object-top"
-                  priority
+                  className="h-full w-full object-cover object-center"
                 />
               </div>
             </div>
