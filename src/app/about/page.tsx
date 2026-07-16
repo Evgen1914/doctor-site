@@ -7,6 +7,7 @@ import {
   CalendarCheck,
   ShieldCheck,
   BookOpen,
+  Baby,
   Heart,
 } from "lucide-react";
 
@@ -40,12 +41,11 @@ const education = [
 ];
 
 const expertise = [
-  "Ведение беременности высокого риска",
-  "Лечение бесплодия",
-  "Малоинвазивная гинекологическая хирургия",
+  "Планирование и ведение беременности",
   "Эндокринная гинекология",
-  "Диагностика и лечение патологии шейки матки",
-  "Планирование семьи и контрацепция",
+  "Современные методы контрацепции",
+  "Доказательная медицина без лишних назначений",
+  "Лечение патологий шейки матки",
 ];
 
 export default function AboutPage() {
@@ -80,15 +80,21 @@ export default function AboutPage() {
                 Врач акушер-гинеколог
               </p>
               <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-                Более 10 лет практики в области акушерства и гинекологии. За это
-                время помогла тысячам женщин сохранить и укрепить своё здоровье.
-                Применяю современные методы диагностики и лечения, постоянно
-                повышаю свою квалификацию.
+                Вы когда-нибудь чувствовали неловкость перед врачом? Со мной об
+                этом можно забыть! В моём кабинете комфортно и спокойно — здесь
+                заботятся не только о здоровье, но и о вашем душевном состоянии.
+                Индивидуальный подход, уважение, отсутствие боли и стресса — мой
+                принцип работы.
               </p>
               <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-                Мой принцип — внимательное отношение к каждой пациентке,
-                доступное объяснение диагноза и плана лечения, создание
-                доверительной атмосферы на приёме.
+                Я постоянно учусь и совершенствуюсь, чтобы предлагать своим
+                пациентам современные, безопасные и эффективные методы лечения.
+                Медицина не стоит на месте — и я тоже.
+              </p>
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                Но самое главное — это доверие между врачом и пациентом. Я всегда
+                объясняю всё простыми словами, без сложных терминов, чтобы вы
+                чувствовали себя уверенно и понимали своё здоровье.
               </p>
 
               <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
@@ -125,7 +131,7 @@ export default function AboutPage() {
                 Специализация
               </div>
               <h2 className="font-[family-name:var(--font-figtree)] text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-                Области экспертизы
+                Как я могу помочь вам?
               </h2>
               <ul className="mt-6 space-y-3">
                 {expertise.map((item) => (
@@ -176,15 +182,28 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Babies statement */}
+      <section className="py-14 sm:py-16">
+        <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
+          <Baby className="mx-auto h-8 w-8 text-primary/60" />
+          <p className="mt-4 font-[family-name:var(--font-figtree)] text-xl font-medium leading-relaxed text-foreground sm:text-2xl">
+            Я помогла появиться на свет сотням малышей и знаю, как важно, чтобы
+            беременность прошла комфортно, а рождение ребёнка стало радостным
+            событием.
+          </p>
+        </div>
+      </section>
+
       {/* CTA */}
-      <section className="py-16 sm:py-20">
+      <section className="border-t border-border/60 py-16 sm:py-20">
         <div className="mx-auto max-w-2xl px-4 text-center sm:px-6">
           <h2 className="font-[family-name:var(--font-figtree)] text-2xl font-bold text-foreground sm:text-3xl">
             Запишитесь на консультацию
           </h2>
           <p className="mt-3 text-muted-foreground">
-            Задайте вопросы и получите профессиональную помощь в комфортной
-            обстановке.
+            Если вы ищете врача, который поддержит вас на этом важном этапе
+            жизни, поможет разобраться с любыми вопросами и будет вам поддержкой —
+            записывайтесь на консультацию!
           </p>
           <Link
             href="/appointment"
