@@ -127,7 +127,7 @@ export default function AboutPage() {
             <div className="lg:col-span-3">
               <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary">
                 <Award className="h-4 w-4" />
-                Врач высшей категории
+                Ведущий специалист
               </div>
               <h1 className="font-[family-name:var(--font-figtree)] text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
                 Налбандян Рипсиме Асатуровна
