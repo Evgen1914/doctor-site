@@ -19,24 +19,50 @@ export const metadata: Metadata = {
 
 const education = [
   {
-    year: "20XX",
-    title: "Медицинский университет",
-    description: "Лечебное дело, диплом с отличием",
+    year: "2010—2016",
+    title: "МГМСУ имени А.И. Евдокимова",
+    description:
+      "Специальность «Лечебное дело». Именной стипендиат г. Москвы.",
   },
   {
-    year: "20XX",
-    title: "Ординатура",
-    description: "Акушерство и гинекология",
+    year: "2016—2018",
+    title: "Клиническая ординатура — Родильный дом №68",
+    description: "Специальность «Акушерство и гинекология».",
+  },
+];
+
+const additionalEducation = [
+  {
+    year: "2018",
+    title: "Ультразвуковая диагностика",
+    description: "Современная научно-технологическая академия.",
   },
   {
-    year: "20XX",
-    title: "Повышение квалификации",
-    description: "Ультразвуковая диагностика в акушерстве и гинекологии",
+    year: "2019",
+    title: "Основные аспекты гинекологической эндокринологии",
+    description: "",
   },
   {
-    year: "20XX",
-    title: "Сертификация",
-    description: "Высшая квалификационная категория по акушерству и гинекологии",
+    year: "2019",
+    title: "Кольпоскопия",
+    description: "",
+  },
+  {
+    year: "2021",
+    title: "Ультразвуковая диагностика в акушерстве и гинекологии",
+    description:
+      "ФНКЦ ФМБА, кафедра ультразвуковой и пренатальной диагностики.",
+  },
+  {
+    year: "2023",
+    title: "Акушерство и гинекология",
+    description:
+      "ФНКЦ ФМБА, кафедра ультразвуковой и пренатальной диагностики.",
+  },
+  {
+    year: "2024",
+    title: "Неврология и беременность",
+    description: "Курс повышения квалификации.",
   },
 ];
 
@@ -47,6 +73,36 @@ const expertise = [
   "Доказательная медицина без лишних назначений",
   "Лечение патологий шейки матки",
 ];
+
+function TimelineItem({
+  item,
+  last,
+}: {
+  item: { year: string; title: string; description: string };
+  last?: boolean;
+}) {
+  return (
+    <div className="flex gap-4">
+      <div className="flex flex-col items-center">
+        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10">
+          <BookOpen className="h-4 w-4 text-primary" />
+        </div>
+        {!last && <div className="mt-2 h-full w-px bg-border" />}
+      </div>
+      <div className="pb-6">
+        <span className="text-xs font-medium text-primary">{item.year}</span>
+        <h3 className="mt-1 text-sm font-semibold text-foreground">
+          {item.title}
+        </h3>
+        {item.description && (
+          <p className="mt-1 text-sm text-muted-foreground">
+            {item.description}
+          </p>
+        )}
+      </div>
+    </div>
+  );
+}
 
 export default function AboutPage() {
   return (
@@ -152,29 +208,28 @@ export default function AboutPage() {
                 Образование
               </div>
               <h2 className="font-[family-name:var(--font-figtree)] text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-                Образование и квалификация
+                Образование
               </h2>
-              <div className="mt-6 space-y-6">
-                {education.map((item) => (
-                  <div key={item.title} className="flex gap-4">
-                    <div className="flex flex-col items-center">
-                      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
-                        <BookOpen className="h-4 w-4 text-primary" />
-                      </div>
-                      <div className="mt-2 h-full w-px bg-border" />
-                    </div>
-                    <div className="pb-6">
-                      <span className="text-xs font-medium text-primary">
-                        {item.year}
-                      </span>
-                      <h3 className="mt-1 text-sm font-semibold text-foreground">
-                        {item.title}
-                      </h3>
-                      <p className="mt-1 text-sm text-muted-foreground">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
+              <div className="mt-6">
+                {education.map((item, i) => (
+                  <TimelineItem
+                    key={item.title}
+                    item={item}
+                    last={i === education.length - 1}
+                  />
+                ))}
+              </div>
+
+              <h3 className="mt-8 font-[family-name:var(--font-figtree)] text-lg font-bold text-foreground">
+                Дополнительное образование
+              </h3>
+              <div className="mt-6">
+                {additionalEducation.map((item, i) => (
+                  <TimelineItem
+                    key={`${item.year}-${item.title}`}
+                    item={item}
+                    last={i === additionalEducation.length - 1}
+                  />
                 ))}
               </div>
             </div>
