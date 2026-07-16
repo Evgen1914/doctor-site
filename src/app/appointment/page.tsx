@@ -4,14 +4,15 @@ import { useState } from "react";
 import Link from "next/link";
 import {
   CalendarCheck,
-  Clock,
   User,
   Phone,
-  Mail,
-  MessageSquare,
+  Stethoscope,
+  Clock,
   CheckCircle,
   ArrowLeft,
+  Loader2,
 } from "lucide-react";
+import { TelegramIcon, social } from "@/components/social-icons";
 
 const serviceOptions = [
   "Первичная консультация",
@@ -23,25 +24,46 @@ const serviceOptions = [
   "Другое",
 ];
 
-const timeSlots = [
-  "09:00",
-  "09:30",
-  "10:00",
-  "10:30",
-  "11:00",
-  "11:30",
-  "14:00",
-  "14:30",
-  "15:00",
-  "15:30",
-  "16:00",
-  "16:30",
-];
-
 export default function AppointmentPage() {
   const [submitted, setSubmitted] = useState(false);
-  const [selectedDate, setSelectedDate] = useState("");
-  const [selectedTime, setSelectedTime] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const payload = {
+      name: String(formData.get("name") ?? ""),
+      phone: String(formData.get("phone") ?? ""),
+      service: String(formData.get("service") ?? ""),
+      time: String(formData.get("time") ?? ""),
+    };
+
+    try {
+      const res = await fetch("/api/appointment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Не удалось отправить заявку");
+      }
+      setSubmitted(true);
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Не удалось отправить заявку. Попробуйте позвонить нам."
+      );
+    } finally {
+      setLoading(false);
+    }
+  }
 
   if (submitted) {
     return (
@@ -54,8 +76,8 @@ export default function AppointmentPage() {
             Заявка отправлена!
           </h1>
           <p className="mt-4 text-muted-foreground">
-            Спасибо за вашу заявку. Мы свяжемся с вами в ближайшее время для
-            подтверждения записи.
+            Спасибо! Мы получили вашу заявку и свяжемся с вами в ближайшее время
+            для подтверждения записи.
           </p>
           <Link
             href="/"
@@ -71,28 +93,52 @@ export default function AppointmentPage() {
 
   return (
     <section className="py-16 sm:py-20">
-      <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary">
             <CalendarCheck className="h-4 w-4" />
-            Онлайн-запись
+            Запись на приём
           </div>
           <h1 className="font-[family-name:var(--font-figtree)] text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Запись на приём
+            Запишитесь удобным способом
           </h1>
           <p className="mt-3 text-muted-foreground">
-            Заполните форму и мы свяжемся с вами для подтверждения
+            Быстрее всего — написать в Telegram. Или оставьте короткую заявку, и
+            мы перезвоним.
           </p>
         </div>
 
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            setSubmitted(true);
-          }}
-          className="mt-10 space-y-6"
-        >
-          {/* Name */}
+        {/* Primary: Telegram + Phone */}
+        <div className="mt-10 flex flex-col gap-3">
+          <a
+            href={social.telegram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-8 py-4 text-base font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all duration-200 hover:bg-primary/90 hover:shadow-xl cursor-pointer"
+          >
+            <TelegramIcon className="h-5 w-5" />
+            Написать в Telegram
+          </a>
+          <a
+            href={`tel:${social.phone}`}
+            className="inline-flex items-center justify-center gap-2 rounded-xl border border-border px-8 py-4 text-base font-medium text-foreground transition-all duration-200 hover:bg-muted cursor-pointer"
+          >
+            <Phone className="h-5 w-5 text-primary" />
+            Позвонить {social.phoneDisplay}
+          </a>
+        </div>
+
+        {/* Divider */}
+        <div className="my-8 flex items-center gap-4">
+          <div className="h-px flex-1 bg-border" />
+          <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+            или оставьте заявку
+          </span>
+          <div className="h-px flex-1 bg-border" />
+        </div>
+
+        {/* Short form */}
+        <form onSubmit={handleSubmit} className="space-y-5">
           <div>
             <label
               htmlFor="name"
@@ -106,12 +152,12 @@ export default function AppointmentPage() {
               id="name"
               name="name"
               required
-              placeholder="Фамилия Имя Отчество"
+              maxLength={100}
+              placeholder="Как к вам обращаться"
               className="w-full rounded-xl border border-border bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 transition-colors duration-200 focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none"
             />
           </div>
 
-          {/* Phone */}
           <div>
             <label
               htmlFor="phone"
@@ -125,43 +171,25 @@ export default function AppointmentPage() {
               id="phone"
               name="phone"
               required
+              maxLength={30}
               placeholder="+7 (___) ___-__-__"
               className="w-full rounded-xl border border-border bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 transition-colors duration-200 focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none"
             />
           </div>
 
-          {/* Email */}
-          <div>
-            <label
-              htmlFor="email"
-              className="mb-2 flex items-center gap-2 text-sm font-medium text-foreground"
-            >
-              <Mail className="h-4 w-4 text-muted-foreground" />
-              Email
-              <span className="text-xs text-muted-foreground">(необязательно)</span>
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="email@example.com"
-              className="w-full rounded-xl border border-border bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 transition-colors duration-200 focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none"
-            />
-          </div>
-
-          {/* Service */}
           <div>
             <label
               htmlFor="service"
               className="mb-2 flex items-center gap-2 text-sm font-medium text-foreground"
             >
-              <MessageSquare className="h-4 w-4 text-muted-foreground" />
+              <Stethoscope className="h-4 w-4 text-muted-foreground" />
               Услуга
+              <span className="text-xs text-muted-foreground">(необязательно)</span>
             </label>
             <select
               id="service"
               name="service"
-              required
+              defaultValue=""
               className="w-full rounded-xl border border-border bg-card px-4 py-3 text-sm text-foreground transition-colors duration-200 focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none cursor-pointer"
             >
               <option value="">Выберите услугу</option>
@@ -173,66 +201,22 @@ export default function AppointmentPage() {
             </select>
           </div>
 
-          {/* Date */}
           <div>
             <label
-              htmlFor="date"
+              htmlFor="time"
               className="mb-2 flex items-center gap-2 text-sm font-medium text-foreground"
             >
-              <CalendarCheck className="h-4 w-4 text-muted-foreground" />
-              Желаемая дата
-            </label>
-            <input
-              type="date"
-              id="date"
-              name="date"
-              required
-              value={selectedDate}
-              onChange={(e) => setSelectedDate(e.target.value)}
-              className="w-full rounded-xl border border-border bg-card px-4 py-3 text-sm text-foreground transition-colors duration-200 focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none cursor-pointer"
-            />
-          </div>
-
-          {/* Time Slots */}
-          <div>
-            <label className="mb-3 flex items-center gap-2 text-sm font-medium text-foreground">
               <Clock className="h-4 w-4 text-muted-foreground" />
-              Желаемое время
-            </label>
-            <div className="grid grid-cols-4 gap-2 sm:grid-cols-6">
-              {timeSlots.map((time) => (
-                <button
-                  key={time}
-                  type="button"
-                  onClick={() => setSelectedTime(time)}
-                  className={`rounded-lg border px-3 py-2 text-sm font-medium transition-all duration-200 cursor-pointer ${
-                    selectedTime === time
-                      ? "border-primary bg-primary text-primary-foreground shadow-sm"
-                      : "border-border bg-card text-foreground hover:border-primary/40 hover:bg-primary/5"
-                  }`}
-                >
-                  {time}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Comment */}
-          <div>
-            <label
-              htmlFor="comment"
-              className="mb-2 flex items-center gap-2 text-sm font-medium text-foreground"
-            >
-              <MessageSquare className="h-4 w-4 text-muted-foreground" />
-              Комментарий
+              Удобное время
               <span className="text-xs text-muted-foreground">(необязательно)</span>
             </label>
-            <textarea
-              id="comment"
-              name="comment"
-              rows={3}
-              placeholder="Опишите причину обращения или задайте вопрос..."
-              className="w-full rounded-xl border border-border bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 transition-colors duration-200 focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none resize-none"
+            <input
+              type="text"
+              id="time"
+              name="time"
+              maxLength={100}
+              placeholder="Например: будни после 17:00"
+              className="w-full rounded-xl border border-border bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 transition-colors duration-200 focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none"
             />
           </div>
 
@@ -245,7 +229,10 @@ export default function AppointmentPage() {
               required
               className="mt-1 h-4 w-4 rounded border-border text-primary focus:ring-primary/20 cursor-pointer"
             />
-            <label htmlFor="consent" className="text-xs text-muted-foreground cursor-pointer">
+            <label
+              htmlFor="consent"
+              className="text-xs text-muted-foreground cursor-pointer"
+            >
               Нажимая кнопку, я даю согласие на обработку{" "}
               <Link
                 href="/privacy"
@@ -264,15 +251,23 @@ export default function AppointmentPage() {
             </label>
           </div>
 
+          {error && (
+            <p className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-600">
+              {error}
+            </p>
+          )}
+
           <button
             type="submit"
-            className="w-full rounded-xl bg-primary px-8 py-3.5 text-base font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all duration-200 hover:bg-primary/90 hover:shadow-xl cursor-pointer"
+            disabled={loading}
+            className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-8 py-3.5 text-base font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all duration-200 hover:bg-primary/90 hover:shadow-xl cursor-pointer disabled:cursor-not-allowed disabled:opacity-70"
           >
-            Отправить заявку
+            {loading && <Loader2 className="h-5 w-5 animate-spin" />}
+            {loading ? "Отправляем..." : "Отправить заявку"}
           </button>
 
           <p className="text-center text-xs text-muted-foreground">
-            Мы перезвоним в течение 30 минут в рабочее время
+            Мы перезвоним в рабочее время для подтверждения записи
           </p>
         </form>
       </div>
