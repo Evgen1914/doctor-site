@@ -25,7 +25,7 @@ export function Navbar() {
             <Heart className="h-5 w-5 text-primary-foreground" />
           </div>
           <span className="text-lg font-semibold font-[family-name:var(--font-figtree)] text-foreground">
-            Доктор
+            Рипсиме Налбандян
           </span>
         </Link>
 

@@ -201,7 +201,7 @@ export default function HomePage() {
               <div className="aspect-[4/5] overflow-hidden rounded-2xl">
                 <Image
                   src="/images/doctor-main.jpg"
-                  alt="Врач-гинеколог"
+                  alt="Налбандян Рипсиме Асатуровна — врач-гинеколог"
                   width={800}
                   height={1200}
                   className="h-full w-full object-cover object-top"

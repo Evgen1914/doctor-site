@@ -11,9 +11,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "О враче — Врач-гинеколог",
+  title: "О враче — Налбандян Рипсиме Асатуровна",
   description:
-    "Квалифицированный врач-гинеколог с более чем 10-летним опытом работы. Образование, квалификация, профессиональный путь.",
+    "Налбандян Рипсиме Асатуровна — врач акушер-гинеколог с более чем 10-летним опытом работы. Образование, квалификация, профессиональный путь.",
 };
 
 const education = [
@@ -59,7 +59,7 @@ export default function AboutPage() {
               <div className="aspect-[3/4] overflow-hidden rounded-2xl">
                 <Image
                   src="/images/doctor-main.jpg"
-                  alt="Врач-гинеколог"
+                  alt="Налбандян Рипсиме Асатуровна — врач-гинеколог"
                   width={800}
                   height={1200}
                   className="h-full w-full object-cover object-top"
@@ -74,7 +74,7 @@ export default function AboutPage() {
                 Врач высшей категории
               </div>
               <h1 className="font-[family-name:var(--font-figtree)] text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                Имя Отчество Фамилия
+                Налбандян Рипсиме Асатуровна
               </h1>
               <p className="mt-1 text-lg font-medium text-primary">
                 Врач акушер-гинеколог

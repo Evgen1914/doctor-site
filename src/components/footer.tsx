@@ -12,7 +12,7 @@ export function Footer() {
                 <Heart className="h-5 w-5 text-primary-foreground" />
               </div>
               <span className="text-lg font-semibold font-[family-name:var(--font-figtree)] text-foreground">
-                Доктор
+                Рипсиме Налбандян
               </span>
             </Link>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
