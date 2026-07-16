@@ -147,7 +147,7 @@ export default function PrivacyPage() {
             <ul className="mt-2 list-disc space-y-1 pl-5">
               <li>Телефон: +7 (963) 726-22-02</li>
               <li>Email: info@example.com</li>
-              <li>Адрес: г. Город, ул. Улица, д. 1</li>
+              <li>Адрес: г. Москва, Ленинский проспект, 107, корп. 1, 119421</li>
             </ul>
           </section>
 

@@ -58,7 +58,10 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-2 text-sm text-muted-foreground">
                 <MapPin className="h-4 w-4 shrink-0 mt-0.5" />
-                <span>г. Город, ул. Улица, д. 1</span>
+                <span>
+                  Москва, Ленинский проспект, 107, корп. 1
+                  <br />1 этаж · м. Новаторская
+                </span>
               </li>
             </ul>
             <div className="mt-4 flex items-center gap-3">

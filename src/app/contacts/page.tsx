@@ -47,9 +47,9 @@ const contacts = [
   {
     icon: MapPin,
     title: "Адрес",
-    value: "г. Город, ул. Улица, д. 1",
-    description: "Кабинет 101, 1 этаж",
-    href: "#",
+    value: "Ленинский проспект, 107, корп. 1",
+    description: "Москва, 119421 · 1 этаж · м. Новаторская",
+    href: "https://yandex.ru/maps/?text=Москва, Ленинский проспект, 107 к1",
   },
 ];
 
@@ -169,21 +169,18 @@ export default function ContactsPage() {
                 Как нас найти
               </h2>
               <div className="mt-6 aspect-[4/3] overflow-hidden rounded-xl border border-border bg-muted">
-                <div className="flex h-full items-center justify-center text-muted-foreground">
-                  <div className="text-center">
-                    <MapPin className="mx-auto h-10 w-10 text-primary/30" />
-                    <p className="mt-3 text-sm">
-                      Здесь будет карта
-                    </p>
-                    <p className="mt-1 text-xs text-muted-foreground/60">
-                      Вставьте iframe Яндекс.Карт или Google Maps
-                    </p>
-                  </div>
-                </div>
+                <iframe
+                  src="https://yandex.ru/map-widget/v1/?mode=search&text=Москва, Ленинский проспект, 107 к1&z=17"
+                  title="Карта — Ленинский проспект, 107, корп. 1"
+                  className="h-full w-full border-0"
+                  loading="lazy"
+                  allowFullScreen
+                />
               </div>
               <p className="mt-4 text-sm text-muted-foreground">
-                Удобный подъезд на автомобиле. Бесплатная парковка перед зданием.
-                Ближайшая остановка общественного транспорта в 5 минутах ходьбы.
+                Москва, Ленинский проспект, 107, корп. 1 (1 этаж). Ближайшее
+                метро — <span className="font-medium text-foreground">Новаторская</span>,
+                в нескольких минутах ходьбы.
               </p>
             </div>
           </div>
