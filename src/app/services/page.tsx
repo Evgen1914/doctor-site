@@ -216,7 +216,7 @@ export default function ServicesPage() {
                 </h2>
               </div>
               <p className="text-sm text-muted-foreground">
-                Ленинский проспект, 107, корп. 1 · м. Новаторская
+                <span className="font-medium text-foreground">Клиника Фомина</span> · Ленинский проспект, 107, корп. 1 · м. Новаторская
               </p>
             </div>
 

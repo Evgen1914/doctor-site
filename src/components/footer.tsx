@@ -59,7 +59,8 @@ export function Footer() {
               <li className="flex items-start gap-2 text-sm text-muted-foreground">
                 <MapPin className="h-4 w-4 shrink-0 mt-0.5" />
                 <span>
-                  Москва, Ленинский проспект, 107, корп. 1
+                  Клиника Фомина
+                  <br />Москва, Ленинский проспект, 107, корп. 1
                   <br />1 этаж · м. Новаторская
                 </span>
               </li>

@@ -47,9 +47,9 @@ const contacts = [
   {
     icon: MapPin,
     title: "Адрес",
-    value: "Ленинский проспект, 107, корп. 1",
-    description: "Москва, 119421 · 1 этаж · м. Новаторская",
-    href: "https://yandex.ru/maps/?text=Москва, Ленинский проспект, 107 к1",
+    value: "Клиника Фомина",
+    description: "Ленинский проспект, 107, корп. 1 · Москва · 1 этаж · м. Новаторская",
+    href: "https://yandex.ru/maps/?text=Клиника Фомина Москва Ленинский проспект 107",
   },
 ];
 
@@ -170,14 +170,15 @@ export default function ContactsPage() {
               </h2>
               <div className="mt-6 aspect-[4/3] overflow-hidden rounded-xl border border-border bg-muted">
                 <iframe
-                  src="https://yandex.ru/map-widget/v1/?mode=search&text=Москва, Ленинский проспект, 107 к1&z=17"
-                  title="Карта — Ленинский проспект, 107, корп. 1"
+                  src="https://yandex.ru/map-widget/v1/?mode=search&text=Клиника Фомина Москва Ленинский проспект 107 к1&z=17"
+                  title="Карта — Клиника Фомина, Ленинский проспект, 107, корп. 1"
                   className="h-full w-full border-0"
                   loading="lazy"
                   allowFullScreen
                 />
               </div>
               <p className="mt-4 text-sm text-muted-foreground">
+                <span className="font-medium text-foreground">Клиника Фомина</span> —
                 Москва, Ленинский проспект, 107, корп. 1 (1 этаж). Ближайшее
                 метро — <span className="font-medium text-foreground">Новаторская</span>,
                 в нескольких минутах ходьбы.
