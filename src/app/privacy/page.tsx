@@ -36,10 +36,10 @@ export default function PrivacyPage() {
 
           <section>
             <h2 className="text-lg font-semibold text-foreground">
-              2. Какие данные мы собираем
+              2. Какие данные я собираю
             </h2>
             <p className="mt-3">
-              При использовании сайта и заполнении форм мы можем собирать
+              При использовании сайта и заполнении форм я могу собирать
               следующие персональные данные:
             </p>
             <ul className="mt-2 list-disc space-y-1 pl-5">

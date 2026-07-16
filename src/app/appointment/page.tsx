@@ -76,7 +76,7 @@ export default function AppointmentPage() {
             Заявка отправлена!
           </h1>
           <p className="mt-4 text-muted-foreground">
-            Спасибо! Мы получили вашу заявку и свяжемся с вами в ближайшее время
+            Спасибо! Я получила вашу заявку и свяжусь с вами в ближайшее время
             для подтверждения записи.
           </p>
           <Link
@@ -104,7 +104,7 @@ export default function AppointmentPage() {
           </h1>
           <p className="mt-3 text-muted-foreground">
             Быстрее всего — написать в Telegram. Или оставьте короткую заявку, и
-            мы перезвоним.
+            я перезвоню.
           </p>
         </div>
 
@@ -267,7 +267,7 @@ export default function AppointmentPage() {
           </button>
 
           <p className="text-center text-xs text-muted-foreground">
-            Мы перезвоним в рабочее время для подтверждения записи
+            Я перезвоню в рабочее время для подтверждения записи
           </p>
         </form>
       </div>

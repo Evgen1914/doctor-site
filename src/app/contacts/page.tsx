@@ -12,7 +12,7 @@ import { TelegramIcon, InstagramIcon, social } from "@/components/social-icons";
 export const metadata: Metadata = {
   title: "Контакты — Налбандян Рипсиме Асатуровна",
   description:
-    "Контактная информация, адрес, часы работы. Свяжитесь с нами по телефону, в Telegram или Instagram, либо запишитесь на приём онлайн.",
+    "Контактная информация, адрес, часы работы. Свяжитесь со мной по телефону, в Telegram или Instagram, либо запишитесь на приём онлайн.",
 };
 
 const contacts = [
@@ -73,7 +73,7 @@ export default function ContactsPage() {
               Контакты
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
-              Свяжитесь с нами любым удобным способом
+              Свяжитесь со мной любым удобным способом
             </p>
           </div>
 
@@ -166,7 +166,7 @@ export default function ContactsPage() {
                 Расположение
               </div>
               <h2 className="font-[family-name:var(--font-figtree)] text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-                Как нас найти
+                Как меня найти
               </h2>
               <div className="mt-6 aspect-[4/3] overflow-hidden rounded-xl border border-border bg-muted">
                 <iframe
