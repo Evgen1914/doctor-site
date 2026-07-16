@@ -1,9 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import {
-  Stethoscope,
+  Video,
   Baby,
-  ScanLine,
+  FileText,
+  MapPin,
   ShieldCheck,
   CalendarCheck,
   Award,
@@ -16,24 +17,25 @@ import { HeroBackground } from "@/components/hero-background";
 
 const services = [
   {
-    icon: Stethoscope,
-    title: "Консультация гинеколога",
-    description: "Комплексный осмотр, диагностика и рекомендации по лечению.",
+    icon: Video,
+    title: "Онлайн-консультация",
+    description:
+      "Разбор жалоб и анализов, план лечения — из любой точки мира: видео, Telegram или телефон.",
   },
   {
     icon: Baby,
-    title: "Ведение беременности",
-    description: "Полное сопровождение от планирования до родов.",
+    title: "Ведение беременности онлайн",
+    description: "Сопровождение беременности с контролем анализов и скринингов.",
   },
   {
-    icon: ScanLine,
-    title: "УЗИ-диагностика",
-    description: "Современное ультразвуковое оборудование для точной диагностики.",
+    icon: FileText,
+    title: "Расшифровка анализов и УЗИ",
+    description: "Профессиональная интерпретация результатов с рекомендациями.",
   },
   {
-    icon: ShieldCheck,
-    title: "Лечение заболеваний",
-    description: "Индивидуальный подход к лечению гинекологических заболеваний.",
+    icon: MapPin,
+    title: "Очный приём в Москве",
+    description: "Осмотр, кольпоскопия и процедуры на Ленинском проспекте.",
   },
 ];
 
@@ -137,7 +139,7 @@ export default function HomePage() {
               Мои услуги
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              Полный спектр гинекологических услуг для заботы о вашем здоровье
+              Основной формат — онлайн-консультации из любой точки мира. Веду и очный приём в Москве
             </p>
           </div>
 

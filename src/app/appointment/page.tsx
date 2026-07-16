@@ -14,14 +14,32 @@ import {
 } from "lucide-react";
 import { TelegramIcon, social } from "@/components/social-icons";
 
-const serviceOptions = [
-  "Первичная консультация",
-  "Повторный приём",
-  "Ведение беременности",
-  "УЗИ органов малого таза",
-  "Лабораторная диагностика",
-  "Подбор контрацепции",
-  "Другое",
+const serviceGroups = [
+  {
+    label: "Онлайн-консультации",
+    options: [
+      "Первичная онлайн-консультация",
+      "Повторная онлайн-консультация",
+      "Расшифровка анализов и УЗИ",
+      "Ведение беременности онлайн",
+      "Подбор контрацепции",
+      "Второе мнение",
+    ],
+  },
+  {
+    label: "Очный приём (Москва)",
+    options: [
+      "Первичный приём (осмотр)",
+      "Повторный приём",
+      "Кольпоскопия",
+      "Установка / удаление ВМС",
+      "Введение подкожного импланта",
+    ],
+  },
+  {
+    label: "Другое",
+    options: ["Другое / уточню при звонке"],
+  },
 ];
 
 export default function AppointmentPage() {
@@ -193,10 +211,14 @@ export default function AppointmentPage() {
               className="w-full rounded-xl border border-border bg-card px-4 py-3 text-sm text-foreground transition-colors duration-200 focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none cursor-pointer"
             >
               <option value="">Выберите услугу</option>
-              {serviceOptions.map((opt) => (
-                <option key={opt} value={opt}>
-                  {opt}
-                </option>
+              {serviceGroups.map((group) => (
+                <optgroup key={group.label} label={group.label}>
+                  {group.options.map((opt) => (
+                    <option key={opt} value={opt}>
+                      {opt}
+                    </option>
+                  ))}
+                </optgroup>
               ))}
             </select>
           </div>
