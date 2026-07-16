@@ -50,35 +50,62 @@ export default function HomePage() {
       <section className="relative overflow-hidden">
         <HeroBackground />
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/30" />
-        <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8 lg:py-36">
-          <div className="mx-auto max-w-2xl text-center">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary">
-              <Heart className="h-4 w-4" />
-              Забота о женском здоровье
+        <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+            {/* Text */}
+            <div className="text-center lg:text-left">
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary">
+                <Heart className="h-4 w-4" />
+                Забота о женском здоровье
+              </div>
+              <h1 className="font-[family-name:var(--font-figtree)] text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+                Ваш гинеколог —{" "}
+                <span className="text-primary">рядом с вами</span>
+              </h1>
+              <p className="mt-6 text-lg leading-relaxed text-muted-foreground sm:text-xl">
+                Профессиональная помощь в комфортной обстановке. Современное
+                оборудование, индивидуальный подход и внимание к каждой
+                пациентке.
+              </p>
+              <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row lg:justify-start sm:justify-center">
+                <Link
+                  href="/appointment"
+                  className="inline-flex items-center gap-2 rounded-xl bg-primary px-8 py-3.5 text-base font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all duration-200 hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30 cursor-pointer"
+                >
+                  <CalendarCheck className="h-5 w-5" />
+                  Записаться на приём
+                </Link>
+                <Link
+                  href="/services"
+                  className="inline-flex items-center gap-2 rounded-xl border border-border px-8 py-3.5 text-base font-medium text-foreground transition-all duration-200 hover:bg-muted cursor-pointer"
+                >
+                  Наши услуги
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
             </div>
-            <h1 className="font-[family-name:var(--font-figtree)] text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-              Ваш гинеколог —{" "}
-              <span className="text-primary">рядом с вами</span>
-            </h1>
-            <p className="mt-6 text-lg leading-relaxed text-muted-foreground sm:text-xl">
-              Профессиональная помощь в комфортной обстановке. Современное
-              оборудование, индивидуальный подход и внимание к каждой пациентке.
-            </p>
-            <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-              <Link
-                href="/appointment"
-                className="inline-flex items-center gap-2 rounded-xl bg-primary px-8 py-3.5 text-base font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all duration-200 hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30 cursor-pointer"
-              >
-                <CalendarCheck className="h-5 w-5" />
-                Записаться на приём
-              </Link>
-              <Link
-                href="/services"
-                className="inline-flex items-center gap-2 rounded-xl border border-border px-8 py-3.5 text-base font-medium text-foreground transition-all duration-200 hover:bg-muted cursor-pointer"
-              >
-                Наши услуги
-                <ArrowRight className="h-4 w-4" />
-              </Link>
+
+            {/* Photo */}
+            <div className="relative mx-auto w-full max-w-sm lg:max-w-none">
+              <div className="absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-primary/20 to-accent/40 blur-2xl" />
+              <div className="aspect-[4/5] overflow-hidden rounded-3xl border border-border/60 shadow-2xl shadow-primary/10">
+                <Image
+                  src="/images/doctor-main.jpg"
+                  alt="Налбандян Рипсиме Асатуровна — врач-гинеколог"
+                  width={800}
+                  height={1000}
+                  className="h-full w-full object-cover object-top"
+                  priority
+                />
+              </div>
+              <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-2xl border border-border/60 bg-card/95 px-5 py-3 text-center shadow-lg backdrop-blur">
+                <div className="font-[family-name:var(--font-figtree)] text-base font-bold text-foreground">
+                  Налбандян Рипсиме
+                </div>
+                <div className="text-xs text-muted-foreground">
+                  Врач акушер-гинеколог
+                </div>
+              </div>
             </div>
           </div>
         </div>
