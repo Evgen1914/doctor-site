@@ -111,7 +111,7 @@ export default function AppointmentPage() {
         {/* Primary: Telegram + Phone */}
         <div className="mt-10 flex flex-col gap-3">
           <a
-            href={social.telegram}
+            href={social.telegramWrite}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-8 py-4 text-base font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all duration-200 hover:bg-primary/90 hover:shadow-xl cursor-pointer"

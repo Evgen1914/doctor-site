@@ -63,10 +63,10 @@ export function Footer() {
             </ul>
             <div className="mt-4 flex items-center gap-3">
               <a
-                href={social.telegram}
+                href={social.telegramWrite}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Telegram"
+                aria-label="Написать в Telegram"
                 className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-muted text-muted-foreground transition-all duration-200 hover:border-primary hover:text-primary cursor-pointer"
               >
                 <TelegramIcon className="h-4 w-4" />

@@ -26,9 +26,16 @@ const contacts = [
   {
     icon: TelegramIcon,
     title: "Telegram",
+    value: "Написать напрямую",
+    description: "Быстрая запись и вопросы в личных сообщениях",
+    href: social.telegramWrite,
+  },
+  {
+    icon: TelegramIcon,
+    title: "Telegram-канал",
     value: "@dr_ripsime",
-    description: "Напишите или подпишитесь на канал",
-    href: social.telegram,
+    description: "Полезное о женском здоровье — подпишитесь",
+    href: social.telegramChannel,
   },
   {
     icon: InstagramIcon,

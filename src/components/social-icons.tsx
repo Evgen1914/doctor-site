@@ -33,7 +33,10 @@ export function InstagramIcon(props: SVGProps<SVGSVGElement>) {
 }
 
 export const social = {
-  telegram: "https://t.me/dr_ripsime",
+  // Прямой чат в Telegram по номеру телефона (можно писать сразу)
+  telegramWrite: "https://t.me/+79637262202",
+  // Telegram-канал (подписка)
+  telegramChannel: "https://t.me/dr_ripsime",
   instagram: "https://www.instagram.com/n_ripsi?utm_source=qr",
   phone: "+79637262202",
   phoneDisplay: "+7 (963) 726-22-02",
