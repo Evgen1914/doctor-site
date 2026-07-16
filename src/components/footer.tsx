@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Heart, Phone, Mail, MapPin } from "lucide-react";
+import { Heart, Phone, MapPin } from "lucide-react";
+import { TelegramIcon, InstagramIcon, social } from "@/components/social-icons";
 
 export function Footer() {
   return (
@@ -46,19 +47,40 @@ export function Footer() {
           <div>
             <h3 className="text-sm font-semibold text-foreground">Контакты</h3>
             <ul className="mt-3 space-y-2">
-              <li className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Phone className="h-4 w-4 shrink-0" />
-                <span>+7 (XXX) XXX-XX-XX</span>
-              </li>
-              <li className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Mail className="h-4 w-4 shrink-0" />
-                <span>info@example.com</span>
+              <li>
+                <a
+                  href={`tel:${social.phone}`}
+                  className="flex items-center gap-2 text-sm text-muted-foreground transition-colors duration-200 hover:text-primary cursor-pointer"
+                >
+                  <Phone className="h-4 w-4 shrink-0" />
+                  <span>{social.phoneDisplay}</span>
+                </a>
               </li>
               <li className="flex items-start gap-2 text-sm text-muted-foreground">
                 <MapPin className="h-4 w-4 shrink-0 mt-0.5" />
                 <span>г. Город, ул. Улица, д. 1</span>
               </li>
             </ul>
+            <div className="mt-4 flex items-center gap-3">
+              <a
+                href={social.telegram}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Telegram"
+                className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-muted text-muted-foreground transition-all duration-200 hover:border-primary hover:text-primary cursor-pointer"
+              >
+                <TelegramIcon className="h-4 w-4" />
+              </a>
+              <a
+                href={social.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-muted text-muted-foreground transition-all duration-200 hover:border-primary hover:text-primary cursor-pointer"
+              >
+                <InstagramIcon className="h-4 w-4" />
+              </a>
+            </div>
           </div>
 
           <div>

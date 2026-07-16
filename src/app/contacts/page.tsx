@@ -2,41 +2,40 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import {
   Phone,
-  Mail,
   MapPin,
   Clock,
   CalendarCheck,
-  MessageCircle,
 } from "lucide-react";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
+import { TelegramIcon, InstagramIcon, social } from "@/components/social-icons";
 
 export const metadata: Metadata = {
-  title: "Контакты — Врач-гинеколог",
+  title: "Контакты — Налбандян Рипсиме Асатуровна",
   description:
-    "Контактная информация, адрес клиники, часы работы. Свяжитесь с нами или запишитесь на приём онлайн.",
+    "Контактная информация, адрес, часы работы. Свяжитесь с нами по телефону, в Telegram или Instagram, либо запишитесь на приём онлайн.",
 };
 
 const contacts = [
   {
     icon: Phone,
     title: "Телефон",
-    value: "+7 (XXX) XXX-XX-XX",
+    value: social.phoneDisplay,
     description: "Звоните для записи и консультаций",
-    href: "tel:+70000000000",
+    href: `tel:${social.phone}`,
   },
   {
-    icon: Mail,
-    title: "Email",
-    value: "info@example.com",
-    description: "Для вопросов и обратной связи",
-    href: "mailto:info@example.com",
+    icon: TelegramIcon,
+    title: "Telegram",
+    value: "@dr_ripsime",
+    description: "Напишите или подпишитесь на канал",
+    href: social.telegram,
   },
   {
-    icon: MessageCircle,
-    title: "WhatsApp / Telegram",
-    value: "+7 (XXX) XXX-XX-XX",
-    description: "Напишите нам в мессенджер",
-    href: "#",
+    icon: InstagramIcon,
+    title: "Instagram",
+    value: "@n_ripsi",
+    description: "Полезное о женском здоровье",
+    href: social.instagram,
   },
   {
     icon: MapPin,
@@ -76,6 +75,8 @@ export default function ContactsPage() {
               <li key={contact.title} className="list-none">
                 <a
                   href={contact.href}
+                  target={contact.href.startsWith("http") ? "_blank" : undefined}
+                  rel={contact.href.startsWith("http") ? "noopener noreferrer" : undefined}
                   className="block cursor-pointer"
                 >
                   <div className="relative h-full rounded-2xl border border-border/60 p-2">

@@ -206,7 +206,7 @@ export default function OfferPage() {
               <li>ИНН: __________</li>
               <li>ОГРН/ОГРНИП: __________</li>
               <li>Адрес: г. Город, ул. Улица, д. 1</li>
-              <li>Телефон: +7 (XXX) XXX-XX-XX</li>
+              <li>Телефон: +7 (963) 726-22-02</li>
               <li>Email: info@example.com</li>
             </ul>
           </section>
