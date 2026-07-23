@@ -145,8 +145,8 @@ export default function PrivacyPage() {
               обращайтесь:
             </p>
             <ul className="mt-2 list-disc space-y-1 pl-5">
-              <li>Телефон: +7 (963) 726-22-02</li>
-              <li>Email: info@example.com</li>
+              <li>Телефон: +7 915 436-86-59</li>
+              <li>Email: nripsi@gmail.com</li>
               <li>Адрес: г. Москва, Ленинский проспект, 107, корп. 1, 119421</li>
             </ul>
           </section>

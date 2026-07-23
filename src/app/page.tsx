@@ -261,7 +261,7 @@ export default function HomePage() {
                 Записаться онлайн
               </Link>
               <a
-                href="tel:+79637262202"
+                href="tel:+79154368659"
                 className="inline-flex items-center gap-2 rounded-xl border border-white/30 px-8 py-3.5 text-base font-medium text-primary-foreground transition-all duration-200 hover:bg-white/10 cursor-pointer"
               >
                 <Clock className="h-5 w-5" />
