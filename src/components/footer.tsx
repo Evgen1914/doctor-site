@@ -97,7 +97,7 @@ export function Footer() {
                   href="/privacy"
                   className="text-sm text-muted-foreground transition-colors duration-200 hover:text-primary cursor-pointer"
                 >
-                  Политика конфиденциальности
+                  Обработка персональных данных
                 </Link>
               </li>
               <li>
